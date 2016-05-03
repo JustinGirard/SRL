@@ -52,7 +52,7 @@ public class WorldThink : MonoBehaviour
 
 			newObj.transform.position = player.transform.position + player.transform.forward*
 				(125f + Random.Range(0,160f));
-			newObj.rigidbody.velocity = player.rigidbody.velocity;
+			newObj.GetComponent<Rigidbody>().velocity = player.GetComponent<Rigidbody>().velocity;
 
 
 			ShipSystem system = player.GetComponent<ShipSystem>();

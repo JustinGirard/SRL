@@ -8,9 +8,9 @@ public class Think : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		renderer.material.shader = Shader.Find ("Specular");
+		GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
 		// Set red specular highlights
-		renderer.material.SetColor ("_Color", Color.cyan);
+		GetComponent<Renderer>().material.SetColor ("_Color", Color.cyan);
 	}
 	
 	// Update is called once per frame
@@ -27,8 +27,8 @@ public class Think : MonoBehaviour
 			Debug.DrawRay(contactPt.point, contactPt.normal, Color.white);
 		}
 
-		renderer.material.shader = Shader.Find ("Specular");
+		GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
 		// Set red specular highlights
-		renderer.material.SetColor ("_Color", Color.red);
+		GetComponent<Renderer>().material.SetColor ("_Color", Color.red);
 	}
 }

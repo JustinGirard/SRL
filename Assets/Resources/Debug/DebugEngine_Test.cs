@@ -21,7 +21,7 @@ public class DebugEngine_Test : ShipSubsystem
 
 		//Test the autopilot
 		sa = system ["ShipAutopilot"].GetComponent<ShipAutopilot> ();
-		ship.rigidbody.maxAngularVelocity = 0f;
+		ship.GetComponent<Rigidbody>().maxAngularVelocity = 0f;
 	}
 
 	override protected void Think ()

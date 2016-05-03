@@ -40,7 +40,7 @@ public class InfoSubsystem : ShipSubsystem {
 	// Update is called once per frame
 	protected override void Think () 
 	{
-		txtSpeed.text = ((int)(ship.rigidbody.velocity.magnitude)) + "c"; 
+		txtSpeed.text = ((int)(ship.GetComponent<Rigidbody>().velocity.magnitude)) + "c"; 
 		txtShield.text = "o))))";
 		txtHull.text = "0]]]]";
 

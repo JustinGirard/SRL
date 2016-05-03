@@ -123,7 +123,7 @@ public class PathDraw : MonoBehaviour
 			if(Vector3.Distance(transform.position, node) > param_followRange )
 			{
 				transform.LookAt(node);
-				rigidbody.velocity = transform.forward* param_robotStep;
+				GetComponent<Rigidbody>().velocity = transform.forward* param_robotStep;
 			}
 			else
 			{
@@ -199,7 +199,7 @@ public class PathDraw : MonoBehaviour
 			this.GetComponent<RobotThink>().selected = true; 
 			RaycastHit hit;
 			Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit);
-			if(hit.collider == this.collider)
+			if(hit.collider == this.GetComponent<Collider>())
 			{
 				drawingLine = true;
 			}

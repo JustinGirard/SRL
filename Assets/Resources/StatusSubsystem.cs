@@ -36,7 +36,7 @@ public class StatusSubsystem : ShipSubsystem {
 					healthBars.Add(button.gameObject);
 				//if(prefix == "Oxygen")
 				//	oxygenBars.Add(button.gameObject);
-				button.renderer.material = mat;
+				button.GetComponent<Renderer>().material = mat;
 			}
 
 		}
@@ -57,7 +57,7 @@ public class StatusSubsystem : ShipSubsystem {
 
 		for(int i=0; i<healthBars.Count;i++)
 		{
-			Renderer rend = healthBars[i].renderer;
+			Renderer rend = healthBars[i].GetComponent<Renderer>();
 			if(i < index)
 				rend.material = buttonRedMaterial;
 			else

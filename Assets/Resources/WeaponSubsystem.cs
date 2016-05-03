@@ -46,13 +46,13 @@ public class WeaponSubsystem : ShipSubsystem {
 			gunAvatar.transform.parent = this.transform;
 
 			gunAvatar.transform.localScale = this.transform.TransformDirection(new Vector3(0.002f,0.02f,0.00016f));
-			gunAvatar.renderer.material = buttonOffMaterial;
+			gunAvatar.GetComponent<Renderer>().material = buttonOffMaterial;
 
 			if(i == 0)
 			{
 				avatars[i] = gunAvatar;
 				activeGun[i] = true;
-				avatars[i].renderer.material = buttonOnMaterial;
+				avatars[i].GetComponent<Renderer>().material = buttonOnMaterial;
 				panel.AddBlaster(blasters[i]);
 			}
 		}
@@ -74,7 +74,7 @@ public class WeaponSubsystem : ShipSubsystem {
 		{
 			//Debug.Log(button.name + ">>" + prefix);
 			if(button.name.StartsWith(prefix))
-				button.renderer.material = mat;
+				button.GetComponent<Renderer>().material = mat;
 		}
 		
 	}
@@ -94,12 +94,12 @@ public class WeaponSubsystem : ShipSubsystem {
 				if(activeGun[i]==false)
 				{
 					activeGun[i] = true;
-					avatars[i].renderer.material = buttonOnMaterial;
+					avatars[i].GetComponent<Renderer>().material = buttonOnMaterial;
 					panel.AddBlaster(blasters[i]);
 				}
 				else
 				{
-					avatars[i].renderer.material = buttonOffMaterial;
+					avatars[i].GetComponent<Renderer>().material = buttonOffMaterial;
 					activeGun[i] = false;
 					panel.RemoveBlaster(blasters[i]);
 				}

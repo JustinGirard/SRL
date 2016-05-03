@@ -52,7 +52,7 @@ public class BulletDecay : MonoBehaviourThink
 
 	public void OnCollisionEnter(Collision collision) 
 	{
-		this.rigidbody.AddExplosionForce (10f, collision.contacts [0].point, 3f);
+		this.GetComponent<Rigidbody>().AddExplosionForce (10f, collision.contacts [0].point, 3f);
 		GameObject part;// = GameObject.Instantiate (st_explosionParticle) as GameObject;
 		if(type == "blue")
 			part = GameObject.Instantiate (st_explosionParticle) as GameObject;

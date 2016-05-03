@@ -96,7 +96,7 @@ public class MeshTriangles
 					GO.AddComponent<MeshFilter>().mesh = mesh;
 					//GO.AddComponent<BoxCollider>();
 					GO.AddComponent<Rigidbody>();//.AddExplosionForce(100f + Random.Range(0f, 500f), obj.transform.position, 30);
-					GO.rigidbody.velocity = obj.transform.parent.gameObject.rigidbody.velocity;
+					GO.GetComponent<Rigidbody>().velocity = obj.transform.parent.gameObject.GetComponent<Rigidbody>().velocity;
 					GO.GetComponent<Rigidbody>().useGravity = false;
 					//yield return null;
 					GameObject.Destroy(GO, 5f + Random.Range(5f, 25f));

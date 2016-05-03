@@ -36,11 +36,11 @@ public class LiquidLaser : Blaster
 		GameObject obj = Instantiate(Resources.Load("LiquidNode")) as GameObject;
 		obj.GetComponent<BulletDecay>().type = "red";
 
-		Physics.IgnoreCollision(obj.collider, ship.collider);
+		Physics.IgnoreCollision(obj.GetComponent<Collider>(), ship.GetComponent<Collider>());
 		obj.transform.position = emitter.transform.position + ship.transform.forward*fwdAmt;
 		//Debug.DrawLine(obj.transform.position,obj.transform.position + ship.transform.forward*fwdAmt,Color.green,0.1f);
-		obj.rigidbody.velocity = ship.transform.forward*fwdVelo + 
-			ship.rigidbody.GetPointVelocity(obj.transform.position);
+		obj.GetComponent<Rigidbody>().velocity = ship.transform.forward*fwdVelo + 
+			ship.GetComponent<Rigidbody>().GetPointVelocity(obj.transform.position);
 		
 		
 		obj.transform.forward = ship.transform.forward;
@@ -48,7 +48,7 @@ public class LiquidLaser : Blaster
 		if(lastNode != null)
 		{
 
-			LineRenderer rendLn = obj.AddComponent("LineRenderer") as LineRenderer;
+			LineRenderer rendLn = obj.AddComponent<LineRenderer>() as LineRenderer;
 			Material mat = Resources.Load("LaserLiquid") as Material;
 			rendLn.material = mat;
 			//rendLn.renderer.material.SetColor ("_SpecColor", Color.red);

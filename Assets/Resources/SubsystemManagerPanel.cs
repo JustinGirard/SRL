@@ -103,24 +103,24 @@ public class SubsystemManagerPanel : ShipSubsystem {
 			int fromIndex = (subIndex + i)%subList.Count;
 			textLabels[i].GetComponent<TextMesh>().text = fromIndex + ":"+subList[fromIndex].name;
 			if(highlightedComponent!=checkSymbols[i] )
-				checkSymbols[i].gameObject.renderer.material = buttonOffMaterial;
+				checkSymbols[i].gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 			if(highlightedComponent!=deleteSymbols[i] )
-				deleteSymbols[i].gameObject.renderer.material = buttonOffMaterial;
+				deleteSymbols[i].gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 			if(highlightedComponent!=minusSymbols[i] )
-				minusSymbols[i].gameObject.renderer.material = buttonOffMaterial;
+				minusSymbols[i].gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 			if(highlightedComponent!=textLabels[i] )
 				(textLabels[i].GetComponent<TextMesh>()).color = new Color(133f/255f,240f/255f,1,1);
 			//s_index
 			
 			if(subList[fromIndex].GetComponent<ShipSubsystem>().SubStatus == Status.active
 			   && highlightedComponent!=checkSymbols[i] )
-				checkSymbols[i].gameObject.renderer.material = buttonPressMaterial;
+				checkSymbols[i].gameObject.GetComponent<Renderer>().material = buttonPressMaterial;
 			if(subList[fromIndex].GetComponent<ShipSubsystem>().SubStatus == Status.minimal
 			   && highlightedComponent!=minusSymbols[i])
-				minusSymbols[i].gameObject.renderer.material = buttonPressMaterial;
+				minusSymbols[i].gameObject.GetComponent<Renderer>().material = buttonPressMaterial;
 			if(subList[fromIndex].GetComponent<ShipSubsystem>().SubStatus == Status.deactivated
 			   && highlightedComponent!=deleteSymbols[i])
-				deleteSymbols[i].gameObject.renderer.material = buttonPressMaterial;
+				deleteSymbols[i].gameObject.GetComponent<Renderer>().material = buttonPressMaterial;
 			if(s_index == fromIndex
 			   && highlightedComponent!=textLabels[i])
 				(textLabels[i].GetComponent<TextMesh>()).color = new Color(255f,255f,148f/255f,1);
@@ -180,7 +180,7 @@ public class SubsystemManagerPanel : ShipSubsystem {
 			allComponents.Add(checkSymbols[i-1].gameObject);
 			allComponents.Add(theText.gameObject);
 			foreach(Transform checkMark in checks)
-				checkMark.gameObject.renderer.material = buttonOffMaterial;
+				checkMark.gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 		}
 		//Before we finish, we create the navigation arrows
 		upArrow = Instantiate (Resources.Load ("Components/Ship/ControlArrow")) as GameObject;
@@ -188,7 +188,7 @@ public class SubsystemManagerPanel : ShipSubsystem {
 		upArrow.transform.position = slotTransforms[0].position 
 			+ slotTransforms[0].TransformDirection(new Vector3(0,0.01f,0));
 		upArrow.transform.rotation =  slotTransforms[0].rotation;
-		upArrow.transform.FindChild("Arrow").gameObject.renderer.material = buttonOffMaterial;
+		upArrow.transform.FindChild("Arrow").gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 
 		//Before we finish, we create the navigation arrows
 		downArrow = Instantiate (Resources.Load ("Components/Ship/ControlArrowDown")) as GameObject;
@@ -196,7 +196,7 @@ public class SubsystemManagerPanel : ShipSubsystem {
 		downArrow.transform.position = slotTransforms[numSlotsSubsusyem-1].position 
 			+ slotTransforms[numSlotsSubsusyem-1].TransformDirection(new Vector3(0,-0.01f,0));
 		downArrow.transform.rotation =  slotTransforms[numSlotsSubsusyem-1].rotation;
-		downArrow.transform.FindChild("Arrow").gameObject.renderer.material = buttonOffMaterial;
+		downArrow.transform.FindChild("Arrow").gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 	
 		allComponents.Add(upArrow.transform.FindChild("Arrow").gameObject);
 		allComponents.Add(downArrow.transform.FindChild("Arrow").gameObject);
@@ -255,7 +255,7 @@ public class SubsystemManagerPanel : ShipSubsystem {
 		{
 			if(highlightedComponent != null &&highlightedComponent.GetComponent<TextMesh>() == null )
 			{
-				highlightedComponent.renderer.material = buttonPressMaterial;
+				highlightedComponent.GetComponent<Renderer>().material = buttonPressMaterial;
 			}
 			if(highlightedComponent != null && highlightedComponent.GetComponent<TextMesh>() != null )
 			{
@@ -313,7 +313,7 @@ public class SubsystemManagerPanel : ShipSubsystem {
 			}
 		}
 		if (highlightedComponent != null && highlightedComponent.GetComponent<TextMesh>() == null)
-			highlightedComponent.gameObject.renderer.material = buttonOffMaterial;
+			highlightedComponent.gameObject.GetComponent<Renderer>().material = buttonOffMaterial;
 		if (highlightedComponent != null && highlightedComponent.GetComponent<TextMesh>() != null)
 		{
 			(highlightedComponent.GetComponent<TextMesh>()).color = new Color(133f/255f,240f/255f,1,1);
@@ -332,10 +332,10 @@ public class SubsystemManagerPanel : ShipSubsystem {
 		{
 
 			//Debug.Log (dist);
-			if(dist < 0.2f && closestObj.gameObject.renderer.material != buttonPressMaterial)
+			if(dist < 0.2f && closestObj.gameObject.GetComponent<Renderer>().material != buttonPressMaterial)
 			{
 				highlightedComponent = closestObj;
-				closestObj.gameObject.renderer.material = buttonOnMaterial;
+				closestObj.gameObject.GetComponent<Renderer>().material = buttonOnMaterial;
 				//Debug.Log(closestObj);
 			}
 		}

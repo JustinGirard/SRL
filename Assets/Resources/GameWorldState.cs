@@ -23,7 +23,7 @@ public class GameWorldState : IWorldState
 
 	public void Create()
 	{
-		Screen.showCursor = false;
+		Cursor.visible = false;
 		WorldCreate worldConstructor = new WorldCreate ();
 		worldConstructor.LoadWorld (wType);
 		isShown = true;
@@ -60,7 +60,7 @@ public class GameWorldState : IWorldState
 	}
 	public void Run()
 	{
-		Screen.showCursor = false;
+		Cursor.visible = false;
 		(GameObject.Find ("World").GetComponent<WorldThink>() as WorldThink).SetRunning(true);
 	}
 	
@@ -72,7 +72,7 @@ public class GameWorldState : IWorldState
 
 	public void Show(bool isOverlay)
 	{
-		Screen.showCursor = false;
+		Cursor.visible = false;
 		isShown = true;
 
 	}

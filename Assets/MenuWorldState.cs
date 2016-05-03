@@ -80,7 +80,7 @@ public class MenuWorldState : IWorldState
 	
 	public void Hide()
 	{
-		menuCam.camera.depth = -1; // Hide
+		menuCam.GetComponent<Camera>().depth = -1; // Hide
 		isShown = false;
 		menuSystem.enabled = false;
 
@@ -88,8 +88,8 @@ public class MenuWorldState : IWorldState
 		{
 			if(obj != null)
 			{
-				if(obj.renderer != null)
-					obj.renderer.enabled = false;
+				if(obj.GetComponent<Renderer>() != null)
+					obj.GetComponent<Renderer>().enabled = false;
 			}
 		}
 
@@ -97,20 +97,20 @@ public class MenuWorldState : IWorldState
 	
 	public void Show(bool isOverlay)
 	{
-		Screen.showCursor = true;
+		Cursor.visible = true;
 		menuSystem.enabled = true;
 
-		menuCam.camera.depth = 10000; 
+		menuCam.GetComponent<Camera>().depth = 10000; 
 
 		isShown = true;
 		foreach(GameObject obj in menuObjects)
 		{
-			if(obj.renderer != null)
-				obj.renderer.enabled = true;
+			if(obj.GetComponent<Renderer>() != null)
+				obj.GetComponent<Renderer>().enabled = true;
 		}
 
-		if (isOverlay && background!= null && background.renderer != null)
-			background.renderer.enabled = false;
+		if (isOverlay && background!= null && background.GetComponent<Renderer>() != null)
+			background.GetComponent<Renderer>().enabled = false;
 	}
 
 	private GameObject CreateObject(string name, string path)

@@ -33,7 +33,7 @@ public class WarpOrb : MonoBehaviour {
 		{
 			Vector3 warpDir = transform.position - warpingObject.transform.position;
 			if(warpDir.magnitude > 4)
-				warpingObject.rigidbody.velocity = warpDir.normalized*4;
+				warpingObject.GetComponent<Rigidbody>().velocity = warpDir.normalized*4;
 			if(warpDir.magnitude < 0.5f)
 			{
 				StateManager stateManager = GameObject.Find ("StateManager").GetComponent<StateManager>();
@@ -47,7 +47,7 @@ public class WarpOrb : MonoBehaviour {
 		//Debug.Log("Detected Collision");
 		if (other.gameObject.name == "Robot")
 		{
-			other.gameObject.rigidbody.velocity *= 0.02f;
+			other.gameObject.GetComponent<Rigidbody>().velocity *= 0.02f;
 			warpingObject = other.gameObject;
 		}
 

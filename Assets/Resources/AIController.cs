@@ -98,9 +98,9 @@ public class AIController : ShipSubsystem , IGeneralShipController
 			return;
 
 		Vector3 playerPosShoot = player.transform.position 
-			+ ((ship.rigidbody.velocity - player.rigidbody.velocity)) * speedFactorShoot;
+			+ ((ship.GetComponent<Rigidbody>().velocity - player.GetComponent<Rigidbody>().velocity)) * speedFactorShoot;
 		Vector3 playerPosTrack = player.transform.position
-			+ player.rigidbody.velocity.normalized*65f;
+			+ player.GetComponent<Rigidbody>().velocity.normalized*65f;
 
 		Debug.DrawLine (player.transform.position, playerPosTrack, Color.red, 0.1f);
 
@@ -115,7 +115,7 @@ public class AIController : ShipSubsystem , IGeneralShipController
 
 		shipUp = new Vector3 (0, 1, 0);
 		Vector3 direction = playerPosTrack -  ship.transform.position; //- ship.rigidbody.velocity;
-		Vector3 goal = direction - (ship.rigidbody.velocity - player.rigidbody.velocity)*9f;// - direction.normalized * 15f;// + player.rigidbody.velocity;
+		Vector3 goal = direction - (ship.GetComponent<Rigidbody>().velocity - player.GetComponent<Rigidbody>().velocity)*9f;// - direction.normalized * 15f;// + player.rigidbody.velocity;
 
 		if (closest.magnitude < 35f)
 			goal += -closest.normalized * 35f; 

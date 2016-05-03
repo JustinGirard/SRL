@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviour {
 		if (c == null)
 			return;
 
-		Ray ray = c.camera.ScreenPointToRay (Input.mousePosition);
+		Ray ray = c.GetComponent<Camera>().ScreenPointToRay (Input.mousePosition);
 		//RaycastHit hita;
 
 		Color colorSelect = new Color (1f, 148f/255f, 148f / 255f, 1);

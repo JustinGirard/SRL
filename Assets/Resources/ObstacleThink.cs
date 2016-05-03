@@ -36,14 +36,14 @@ public class ObstacleThink : MonoBehaviourThink {
 			float diff = player.transform.position.y - transform.position.y;
 			if (Mathf.Abs(diff) < 2)
 			{
-				renderer.material.shader = Shader.Find ("Specular");
-				renderer.material.SetColor ("_Color", Color.red);
+				GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
+				GetComponent<Renderer>().material.SetColor ("_Color", Color.red);
 
 			}	
 			else
 			{
-				renderer.material.shader = Shader.Find ("Specular");
-				renderer.material.SetColor ("_Color", Color.grey);
+				GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
+				GetComponent<Renderer>().material.SetColor ("_Color", Color.grey);
 
 			}
 		}

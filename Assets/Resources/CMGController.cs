@@ -29,7 +29,7 @@ public class CMGController : ThrusterController
 		if(currentPower != 0)
 		{
 			//Debug.Log(currentPower);
-			ship.rigidbody.AddTorque(currentPower*this.transform.up,ForceMode.Force);
+			ship.GetComponent<Rigidbody>().AddTorque(currentPower*this.transform.up,ForceMode.Force);
 			currentPower = 0;
 		}
 	}

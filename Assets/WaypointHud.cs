@@ -160,7 +160,7 @@ public class WaypointHud : ShipSubsystem
 		{
 			Vector3 relPos;
 			Vector3 startPos;
-			Camera shipCam = overCam.transform.parent.camera;
+			Camera shipCam = overCam.transform.parent.GetComponent<Camera>();
 
 			waypoint.transform.parent = shipCam.transform;
 			startPos = shipCam.transform.position 

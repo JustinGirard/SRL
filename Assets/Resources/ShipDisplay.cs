@@ -39,10 +39,10 @@ public class ShipDisplay : ShipSubsystem
 		timeMax = 1000;
 		scanRange = 50;
 		droneCamera = (GameObject.Instantiate(Resources.Load("OverheadCamera") as GameObject) 
-		               as GameObject).camera;
+		               as GameObject).GetComponent<Camera>();
 		droneCamera.name = "OverheadCamera";
 
-		shipCamera = GameObject.Find("ShipCamera").camera;
+		shipCamera = GameObject.Find("ShipCamera").GetComponent<Camera>();
 		droneCamera.transform.parent = shipCamera.transform;
 
 	}
@@ -85,10 +85,10 @@ public class ShipDisplay : ShipSubsystem
 		GameObject clone = holo.hologram;
 		Vector3 objv = new Vector3 (0, 0, 0);
 		Vector3 shpv = new Vector3 (0, 0, 0);
-		if(detectedObj.rigidbody != null)
+		if(detectedObj.GetComponent<Rigidbody>() != null)
 		{
-			objv = detectedObj.rigidbody.velocity;
-			shpv = this.transform.parent.parent.parent.gameObject.rigidbody.velocity;
+			objv = detectedObj.GetComponent<Rigidbody>().velocity;
+			shpv = this.transform.parent.parent.parent.gameObject.GetComponent<Rigidbody>().velocity;
 		}
 		Vector3 shpr = this.gameObject.transform.rotation.eulerAngles;
 
@@ -104,7 +104,7 @@ public class ShipDisplay : ShipSubsystem
 		objv = new Vector3(objv.x * scale,objv.y*scale,objv.z*scale);
 		shpv = new Vector3(shpv.x * scale,shpv.y*scale,shpv.z*scale);
 		relVel = Quaternion.Euler(shpr.x, shpr.y, shpr.z) * (objv - shpv);
-		newVec = this.transform.parent.parent.parent.gameObject.rigidbody.velocity+relVel;
+		newVec = this.transform.parent.parent.parent.gameObject.GetComponent<Rigidbody>().velocity+relVel;
 
 		Quaternion ea = this.gameObject.transform.rotation;
 		Quaternion cEa = detectedObj.transform.rotation;
@@ -155,7 +155,7 @@ public class ShipDisplay : ShipSubsystem
 				foreach(MonoBehaviourThink com in clone.GetComponents<MonoBehaviourThink>())
 					com.enabled = false;
 
-				clone.collider.enabled = false;
+				clone.GetComponent<Collider>().enabled = false;
 				clone.transform.parent = this.transform; // link the hologram to the display
 				SensorHologram holo = new SensorHologram(detectedObj,clone);
 

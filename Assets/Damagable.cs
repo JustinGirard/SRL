@@ -45,11 +45,11 @@ public class Damagable : MonoBehaviour, ITakeDamage
 
 	public void OnCollisionEnter(Collision collision) 
 	{
-		if (collision.gameObject.rigidbody == null)
+		if (collision.gameObject.GetComponent<Rigidbody>() == null)
 				return;
 		if (collision.relativeVelocity.magnitude > 10f)
 		{
-			DoDamage (collision.gameObject.rigidbody.mass*collision.relativeVelocity.magnitude, collision);
+			DoDamage (collision.gameObject.GetComponent<Rigidbody>().mass*collision.relativeVelocity.magnitude, collision);
 		}
 	}
 

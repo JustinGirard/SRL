@@ -114,7 +114,7 @@ public class ShipSystem : MonoBehaviourThink, ITakeDamage
 		GameObject overCam = GameObject.Find("OverheadCamera");
 		GameObject shipCam = GameObject.Find("ShipCamera");
 
-		Camera c = cGo.camera;
+		Camera c = cGo.GetComponent<Camera>();
 		c.transform.parent = shipCam.transform;
 		cGo.name = "DeathCamera(Temp)";
 		PlayerController.controlMode md;
@@ -182,12 +182,12 @@ public class ShipSystem : MonoBehaviourThink, ITakeDamage
 				//Destroy(subsystems[key].gameObject.GetComponent<BoxCollider>());
 				//yield return new WaitForSeconds(.1f);
 
-				if(subsystems[key].rigidbody == null && key != "Body")
+				if(subsystems[key].GetComponent<Rigidbody>() == null && key != "Body")
 				{
 					subsystems[key].gameObject.AddComponent<Rigidbody>();
-					subsystems[key].gameObject.rigidbody.detectCollisions  = true;
-					subsystems[key].gameObject.rigidbody.useGravity = false;
-					subsystems[key].gameObject.rigidbody.velocity = this.transform.rigidbody.velocity;
+					subsystems[key].gameObject.GetComponent<Rigidbody>().detectCollisions  = true;
+					subsystems[key].gameObject.GetComponent<Rigidbody>().useGravity = false;
+					subsystems[key].gameObject.GetComponent<Rigidbody>().velocity = this.transform.GetComponent<Rigidbody>().velocity;
 				}
 				yield return new WaitForSeconds(0.05f);
 			}

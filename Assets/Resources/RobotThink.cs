@@ -14,7 +14,7 @@ public class RobotThink : MonoBehaviour
 		//targetPos = null;
 		fracJourney = 0;
 		baseColor = Color.blue;
-		renderer.material.shader = Shader.Find ("Specular");
+		GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
 	}
 	
 	// Update is called once per frame
@@ -42,13 +42,13 @@ public class RobotThink : MonoBehaviour
 		}
 		if(selected == true)
 		{
-			renderer.material.shader = Shader.Find ("Specular");
-			renderer.material.SetColor ("_Color", Color.red);
+			GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
+			GetComponent<Renderer>().material.SetColor ("_Color", Color.red);
 		}
 		else if(selected == false)
 		{
-			renderer.material.shader = Shader.Find ("Specular");
-			renderer.material.SetColor ("_Color", baseColor);
+			GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
+			GetComponent<Renderer>().material.SetColor ("_Color", baseColor);
 		}
 
 		//GameObject[] gos;

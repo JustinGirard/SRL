@@ -32,8 +32,8 @@ public class BreakGlass : MonoBehaviour {
 		BrokenGlassInstance.transform.localScale = transform.lossyScale;
 		
 		foreach(Transform t in BrokenGlassInstance.transform){
-			t.renderer.material = ShardMaterial;
-			t.rigidbody.mass=ShardMass;
+			t.GetComponent<Renderer>().material = ShardMaterial;
+			t.GetComponent<Rigidbody>().mass=ShardMass;
 		}
 		
 		if(BreakSound) Destroy(Instantiate(SoundEmitter, transform.position, transform.rotation) as GameObject, SoundEmitterLifetime);

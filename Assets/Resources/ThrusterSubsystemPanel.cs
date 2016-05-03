@@ -83,8 +83,8 @@ public class ThrusterSubsystemPanel : ShipSubsystem
 			thrusterPosition[con] = ship.transform.InverseTransformPoint(con.transform.FindChild("Jet").position); // Relative position of the force vector
 			thrusterMoment[con] = Vector3.Cross(thrusterForce[con],thrusterPosition[con]);
 		}
-		thrusterAccLinear[con] = thrusterForce[con] / ship.rigidbody.mass;
-		thrusterAccAngular[con] = thrusterMoment[con] / ship.rigidbody.mass;
+		thrusterAccLinear[con] = thrusterForce[con] / ship.GetComponent<Rigidbody>().mass;
+		thrusterAccAngular[con] = thrusterMoment[con] / ship.GetComponent<Rigidbody>().mass;
 		thrusterPower[con] = 0f; // power between zero and one
 		thrusterList.Add (con);
 	}
@@ -162,7 +162,7 @@ public class ThrusterSubsystemPanel : ShipSubsystem
 				GameObject button = transform.FindChild (thrusterConsoleMapping[index][2]).FindChild (thrusterConsoleMapping[index][3]).gameObject;
 				buttonThruster [button ] = con;
 				thrusterButton [con ] = button;
-				button.renderer.material = buttonOffMaterial;
+				button.GetComponent<Renderer>().material = buttonOffMaterial;
 
 				SetupThruster(con);
 
@@ -214,9 +214,9 @@ public class ThrusterSubsystemPanel : ShipSubsystem
 //			Debug.Log (thrusterIndex + "::::" + powerFraction);
 //		Debug.Log (thrusterList.Count);
 		if(powerFraction > 0.3f)
-			thrusterButton [thrusterList[thrusterIndex]] .renderer.material = buttonOnMaterial;
+			thrusterButton [thrusterList[thrusterIndex]] .GetComponent<Renderer>().material = buttonOnMaterial;
 		else
-			thrusterButton [thrusterList[thrusterIndex] ] .renderer.material = buttonOffMaterial;
+			thrusterButton [thrusterList[thrusterIndex] ] .GetComponent<Renderer>().material = buttonOffMaterial;
 
 		thrusterList[thrusterIndex].SetPowerFraction (powerFraction);
 		thrusterPower [thrusterList[thrusterIndex]] = powerFraction;

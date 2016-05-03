@@ -69,7 +69,7 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 		//ship = this.transform.parent.parent.parent;
 		DebugCursorConsole = GameObject.Find("DebugCursorConsole");
 		
-		DebugCursorConsole.renderer.enabled = true;
+		DebugCursorConsole.GetComponent<Renderer>().enabled = true;
 		mode = controlMode.sensor;
 
 		targetOrientation = Vector3.zero;
@@ -165,7 +165,7 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 	{
 		if (mode == controlMode.sensor)
 		{
-			Camera c =GameObject.Find("OverheadCamera").camera;
+			Camera c =GameObject.Find("OverheadCamera").GetComponent<Camera>();
 			if((int)commandStatus[ActionCode.aimup] == 0 && (int)commandStatus[ActionCode.aimdown] == 0)
 			{	
 				if((forwardVector.normalized +
@@ -281,11 +281,11 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 	private void UpdateCursors()
 	{
 		GameObject avatar = ship;
-		Camera c =GameObject.Find("OverheadCamera").camera;
+		Camera c =GameObject.Find("OverheadCamera").GetComponent<Camera>();
 		
 		if(mode == controlMode.sensor)
 		{
-			DebugCursorConsole.gameObject.renderer.enabled = true;
+			DebugCursorConsole.gameObject.GetComponent<Renderer>().enabled = true;
 				//cursorPos.x = 10;
 			if (((int)commandStatus [ActionCode.aimright]) > 0)
 			{
@@ -312,7 +312,7 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 
 
 
-			c =GameObject.Find("OverheadCamera").camera;
+			c =GameObject.Find("OverheadCamera").GetComponent<Camera>();
 			DebugCursorConsole.gameObject.transform.parent = c.transform;
 			Ray rayMouse =	c.ScreenPointToRay (GetCursorPosition());
 			Vector3 cursorPoint = c.ScreenToViewportPoint(GetCursorPosition());
@@ -339,9 +339,9 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 		else
 		{
 			DebugCursorConsole.gameObject.transform.parent = ship.transform;
-			DebugCursorConsole.gameObject.renderer.enabled = false;
+			DebugCursorConsole.gameObject.GetComponent<Renderer>().enabled = false;
 
-			c =GameObject.Find("ShipCamera").camera;
+			c =GameObject.Find("ShipCamera").GetComponent<Camera>();
 			Vector3 cursorPointManual = c.ScreenToViewportPoint(GetCursorPosition());
 			Vector3 consoleCursorManual =  cursorPointManual;
 			consoleCursorManual.z = consoleCursorManual.z + 3; // Move the cursor forward
@@ -420,7 +420,7 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 			//Debug.Log("Escape");
 			mode = controlMode.menu;
 			focusedPanel = null;
-			Camera c =GameObject.Find("ShipCamera").camera;
+			Camera c =GameObject.Find("ShipCamera").GetComponent<Camera>();
 			c.transform.position = system["Body"].transform.FindChild("MountPilot").position;
 			c.transform.rotation = system["Body"].transform.FindChild("MountPilot").rotation;
 		}
@@ -428,7 +428,7 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 		if (GetAction(ActionCode.viewToggle))
 		{
 			focusedPanel = null;
-			Camera c =GameObject.Find("ShipCamera").camera;
+			Camera c =GameObject.Find("ShipCamera").GetComponent<Camera>();
 			c.transform.position = system["Body"].transform.FindChild("MountPilot").position;
 			c.transform.rotation = system["Body"].transform.FindChild("MountPilot").rotation;
 			
@@ -488,16 +488,16 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 
 			if(targetVelocity == Vector3.zero)
 			{
-				Vector3 currVeloOff = ship.rigidbody.velocity - 
-					Vector3.Project(ship.rigidbody.velocity,theForward);
-				Vector3 currVeloOn = Vector3.Project(ship.rigidbody.velocity,theForward);
+				Vector3 currVeloOff = ship.GetComponent<Rigidbody>().velocity - 
+					Vector3.Project(ship.GetComponent<Rigidbody>().velocity,theForward);
+				Vector3 currVeloOn = Vector3.Project(ship.GetComponent<Rigidbody>().velocity,theForward);
 
 				targetVelocity = -currVeloOff + 
 					targetFwdVelocity.magnitude*theForward - currVeloOn;
 			}
 			else
 			{
-				targetFwdVelocity = Vector3.Project(ship.rigidbody.velocity,theForward);
+				targetFwdVelocity = Vector3.Project(ship.GetComponent<Rigidbody>().velocity,theForward);
 			}
 
 			targetVelocity = targetVelocity;
@@ -543,12 +543,12 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 		Vector3 vec_shipBeacon = shipPos - beaconPos;
 		
 		Vector3 upDisplacement_shipBeacon = Vector3.Project (vec_shipBeacon, upVector.normalized);
-		Vector3 upVeclocity_shipBeacon = Vector3.Project (ship.rigidbody.velocity, upVector.normalized);
+		Vector3 upVeclocity_shipBeacon = Vector3.Project (ship.GetComponent<Rigidbody>().velocity, upVector.normalized);
 		Vector3 upAddedDisplacement_shipBeacon = upVeclocity_shipBeacon * timeFactor;
 		Vector3 upTarget_shipBeacon = upDisplacement_shipBeacon +  upAddedDisplacement_shipBeacon;
 		
 		Vector3 sideDisplacement_shipBeacon = Vector3.Project (vec_shipBeacon, sideVector.normalized);
-		Vector3 sideVeclocity_shipBeacon = Vector3.Project (ship.rigidbody.velocity, sideVector.normalized);
+		Vector3 sideVeclocity_shipBeacon = Vector3.Project (ship.GetComponent<Rigidbody>().velocity, sideVector.normalized);
 		Vector3 sideAddedDisplacement_shipBeacon = sideVeclocity_shipBeacon * timeFactor;
 		Vector3 sideTarget_shipBeacon = sideDisplacement_shipBeacon +  sideAddedDisplacement_shipBeacon;
 		
@@ -573,7 +573,7 @@ public class PlayerController : ShipSubsystem , IGeneralShipController
 			vec_shipBeacon -= targetSideDisplacement;
 			
 			sideDisplacement_shipBeacon = Vector3.Project (vec_shipBeacon, sideVector.normalized);
-			sideVeclocity_shipBeacon = Vector3.Project (ship.rigidbody.velocity, sideVector.normalized);
+			sideVeclocity_shipBeacon = Vector3.Project (ship.GetComponent<Rigidbody>().velocity, sideVector.normalized);
 			
 			sideAddedDisplacement_shipBeacon = sideVeclocity_shipBeacon * timeFactor;
 			sideTarget_shipBeacon = sideDisplacement_shipBeacon +  sideAddedDisplacement_shipBeacon;

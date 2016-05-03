@@ -59,7 +59,7 @@ public class ResourcesSubsystem : ShipSubsystem {
 				if(prefix == "Oxygen")
 					oxygenBars.Add(button.gameObject);
 
-				button.renderer.material = mat;
+				button.GetComponent<Renderer>().material = mat;
 			}
 		}
 		
@@ -79,7 +79,7 @@ public class ResourcesSubsystem : ShipSubsystem {
 		
 		for(int i=0; i<healthBars.Count;i++)
 		{
-			Renderer rend = healthBars[i].renderer;
+			Renderer rend = healthBars[i].GetComponent<Renderer>();
 			if(i < index)
 				rend.material = buttonRedMaterial;
 			else
@@ -91,7 +91,7 @@ public class ResourcesSubsystem : ShipSubsystem {
 		
 		for(int i=0; i<energyBars.Count;i++)
 		{
-			Renderer rend = energyBars[i].renderer;
+			Renderer rend = energyBars[i].GetComponent<Renderer>();
 			if(i < index)
 				rend.material = buttonOnMaterial;
 			else
@@ -123,7 +123,7 @@ public class ResourcesSubsystem : ShipSubsystem {
 
 		for(int i=0; i<chargeBars.Count;i++)
 		{
-			Renderer rend = chargeBars[i].renderer;
+			Renderer rend = chargeBars[i].GetComponent<Renderer>();
 			rend.material = buttonOffMaterial;
 			if(i <= indexGoal && i >= indexFrom)
 				rend.material = chargeMat;
@@ -134,7 +134,7 @@ public class ResourcesSubsystem : ShipSubsystem {
 		index = (int)(percentMetal* (float)(metalBars.Count - 1));
 		for(int i=0; i<metalBars.Count;i++)
 		{
-			Renderer rend = metalBars[i].renderer;
+			Renderer rend = metalBars[i].GetComponent<Renderer>();
 			if(i < index)
 				rend.material = buttonPressMaterial;
 			else
@@ -146,7 +146,7 @@ public class ResourcesSubsystem : ShipSubsystem {
 		index = (int)(percentOxygen* (float)(oxygenBars.Count - 1));
 		for(int i=0; i<oxygenBars.Count;i++)
 		{
-			Renderer rend = oxygenBars[i].renderer;
+			Renderer rend = oxygenBars[i].GetComponent<Renderer>();
 			if(i < index)
 				rend.material = buttonPressMaterial;
 			else

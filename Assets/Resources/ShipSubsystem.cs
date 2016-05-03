@@ -198,19 +198,19 @@ abstract public class ShipSubsystem : MonoBehaviourThink
 	{
 		foreach(Transform child in this.transform )
 		{
-			if(child.gameObject.renderer != null)
+			if(child.gameObject.GetComponent<Renderer>() != null)
 			{
-				if(child.gameObject.renderer.material.shader!= buttonOnMaterial.shader)
+				if(child.gameObject.GetComponent<Renderer>().material.shader!= buttonOnMaterial.shader)
 				{
-					defaultMaterial = child.gameObject.renderer.material;
+					defaultMaterial = child.gameObject.GetComponent<Renderer>().material;
 					//Debug.Log(child.gameObject.renderer.material.name + " --- " + buttonOnMaterial.name);
 				}
 
 				if(focused == false)
-					child.gameObject.renderer.material = buttonOnMaterial;
+					child.gameObject.GetComponent<Renderer>().material = buttonOnMaterial;
 				else if(defaultMaterial != null &&
-				        child.gameObject.renderer.material.shader!= defaultMaterial.shader)
-					child.gameObject.renderer.material = defaultMaterial;
+				        child.gameObject.GetComponent<Renderer>().material.shader!= defaultMaterial.shader)
+					child.gameObject.GetComponent<Renderer>().material = defaultMaterial;
 
 			}
 		}
@@ -224,8 +224,8 @@ abstract public class ShipSubsystem : MonoBehaviourThink
 		//Debug.Log (defaultMaterial);
 		foreach(Transform child in this.transform )
 		{
-			if(child.gameObject.renderer != null)
-				child.gameObject.renderer.material = defaultMaterial;
+			if(child.gameObject.GetComponent<Renderer>() != null)
+				child.gameObject.GetComponent<Renderer>().material = defaultMaterial;
 		}
 	}
 

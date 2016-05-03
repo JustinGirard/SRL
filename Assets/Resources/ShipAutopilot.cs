@@ -103,7 +103,7 @@ public class ShipAutopilot : ShipSubsystem
 		{
 			//Debug.Log(button.name + ">>" + prefix);
 			if(button.name.StartsWith(prefix))
-				button.renderer.material = mat;
+				button.GetComponent<Renderer>().material = mat;
 			
 		}
 		
@@ -243,7 +243,7 @@ public class ShipAutopilot : ShipSubsystem
 //		mTarg.z *= (float)(Math.Exp(Math.Abs(rotationPositions.z)/slope - distance )/(1+ Math.Exp(Math.Abs(rotationPositions.z)/slope-distance)));
 
 		Vector3 mFuture = new Vector3 (0, 0, 0);
-		Vector3 currentAngVel = ship.transform.InverseTransformDirection(ship.transform.rigidbody.angularVelocity);
+		Vector3 currentAngVel = ship.transform.InverseTransformDirection(ship.transform.GetComponent<Rigidbody>().angularVelocity);
 		foreach(Vector3 momentVector in momentCurrent)
 		{
 			mFuture += momentVector;
@@ -260,7 +260,7 @@ public class ShipAutopilot : ShipSubsystem
 		if(mag < lockMag) // A tiny hack to avoid the PID ossilations. Just set the exact velocity when we have pretty much converged.
 		{//TODO remove little hack here, which seems reasonable in a game.
 			if(deltaAng.magnitude > 0)
-				ship.rigidbody.angularVelocity += ship.transform.TransformDirection(deltaAng/300f); 
+				ship.GetComponent<Rigidbody>().angularVelocity += ship.transform.TransformDirection(deltaAng/300f); 
 			//ship.rigidbody.angularVelocity = Vector3.zero;
 			return;
 		}
@@ -424,7 +424,7 @@ public class ShipAutopilot : ShipSubsystem
 
 
 		Vector3 vTarg = ship.transform.InverseTransformDirection (movementVector); // This is the target position.
-		Vector3 vCurrent = ship.transform.InverseTransformDirection (ship.rigidbody.velocity); // This is the current Direction.
+		Vector3 vCurrent = ship.transform.InverseTransformDirection (ship.GetComponent<Rigidbody>().velocity); // This is the current Direction.
 
 		//Vector3 vTarg = vTargIn.normalized;
 
@@ -453,7 +453,7 @@ public class ShipAutopilot : ShipSubsystem
 		*/
 		//Debug.Log (movementVector);
 
-		if ((vTarg - ship.rigidbody.velocity).magnitude < targetTolerance && vTarg == Vector3.zero)
+		if ((vTarg - ship.GetComponent<Rigidbody>().velocity).magnitude < targetTolerance && vTarg == Vector3.zero)
 		{
 			//Debug.Log("Target reached");
 			return;
@@ -539,7 +539,7 @@ public class ShipAutopilot : ShipSubsystem
 	//		snappyPowerFactor = 1f;
 
 
-		ship.rigidbody.velocity += ship.transform.TransformDirection(speedPredicted*snappyPowerFactor);
+		ship.GetComponent<Rigidbody>().velocity += ship.transform.TransformDirection(speedPredicted*snappyPowerFactor);
 		
 		//////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////

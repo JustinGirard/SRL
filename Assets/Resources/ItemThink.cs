@@ -10,7 +10,7 @@ public class ItemThink : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		renderer.material.shader = Shader.Find ("Specular");
+		GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
 		
 	}
 	
@@ -19,17 +19,17 @@ public class ItemThink : MonoBehaviour
 	{
 		if(carried == true)
 		{
-			renderer.material.shader = Shader.Find ("Specular");
-			renderer.material.SetColor ("_Color", Color.red);
+			GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
+			GetComponent<Renderer>().material.SetColor ("_Color", Color.red);
 		}
 
 		else if(carried == false)
 		{
-			renderer.material.shader = Shader.Find ("Specular");
+			GetComponent<Renderer>().material.shader = Shader.Find ("Specular");
 			if(param_weight == "light")
-				renderer.material.SetColor ("_Color", new Color(1f,1f,1f,0.5f));
+				GetComponent<Renderer>().material.SetColor ("_Color", new Color(1f,1f,1f,0.5f));
 			else
-				renderer.material.SetColor ("_Color", new Color(0.5f,0.5f,0.5f,1f));
+				GetComponent<Renderer>().material.SetColor ("_Color", new Color(0.5f,0.5f,0.5f,1f));
 		}
 
 	}
