@@ -49,7 +49,7 @@ public class CompoundObjectFactory
 				ctShipBody.AddChild(new CompoundObjectTemplate("CMG",1,"Components/Ship/CMG","MountBackTopB","") );
 				ctShipBody.AddChild(new CompoundObjectTemplate("ThrusterSubsystemPanel",1,"Components/Ship/ThrusterSubsystemPanel","MountConsoleRight1A","") );
 				ctShipBody.AddChild(new CompoundObjectTemplate("ShipAutopilot",1,"Components/Ship/ShipAutopilot","MountConsoleDashRight","") );
-				ctShipBody.AddChild(new CompoundObjectTemplate("InfoSubsystem",1,"Components/Ship/InfoSubsystemPanel","MountConsoleDashLeft","") );
+				//ctShipBody.AddChild(new CompoundObjectTemplate("InfoSubsystem",1,"Components/Ship/InfoSubsystemPanel","MountConsoleDashLeft","") );
 
 				if(type != COType.Enemy)
 				{

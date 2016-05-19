@@ -7,15 +7,20 @@ public class BulletDecay : MonoBehaviourThink
 	public int maxDelay = 100;
 	LineRenderer lineToUpdateSource;
 	LineRenderer lineToUpdateDestination;
-	private static GameObject st_explosionParticle = Resources.Load("BlastExplosion") as GameObject;
-	private static GameObject st_explosionParticleRed = Resources.Load("BlastExplosionRed") as GameObject;
+    private static GameObject st_explosionParticle = null;
+	private static GameObject st_explosionParticleRed = null;
 
 	public string type = "blue";
 	float damagePower = 0;
 
 	override protected void Initalize () 
 	{
-		damagePower = 500f;
+        if (st_explosionParticle == null)
+        {
+            st_explosionParticle = Resources.Load("BlastExplosion") as GameObject;
+            st_explosionParticleRed = Resources.Load("BlastExplosionRed") as GameObject;
+        }
+    damagePower = 500f;
 	}
 
 

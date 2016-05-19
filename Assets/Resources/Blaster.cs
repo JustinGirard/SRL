@@ -37,8 +37,10 @@ public class Blaster : ShipSubsystem
 		float fwdAmt = 3f;
 		float fwdVelo = 80f;
 
-		//Debug.Log("SHOOTING");
-		GameObject obj = Instantiate(Resources.Load("Blast")) as GameObject;
+        //Debug.Log("SHOOTING");
+        Object loaded = Resources.Load("Blast");
+
+        GameObject obj = Instantiate(loaded) as GameObject;
 		obj.GetComponent<BulletDecay>().type = "blue";
 
 		Physics.IgnoreCollision(obj.GetComponent<Collider>(), ship.GetComponent<Collider>());
